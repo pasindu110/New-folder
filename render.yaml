@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: cyberbook-hub
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt && python setup_render.py
+    startCommand: gunicorn app:app
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+    healthCheckPath: /
