@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="card">
+  <h2>{{ book['title'] }}</h2>
+  <p><strong>Author:</strong> {{ book['author'] }}</p>
+  <p>{{ book['description'] }}</p>
+
+  <div class="book-actions" style="margin-top:12px;">
+    <a class="btn" href="{{ url_for('index') }}">← Back</a>
+    <a class="btn btn-outline" href="{{ url_for('download') }}?file=sample.txt">Download sample</a>
+  </div>
+
+  <h3 style="margin-top:16px;">Reviews</h3>
+  <div class="comments">
+    {% for rv in reviews %}
+      <div class="comment">{{ rv['review']|safe }}</div>
+    {% else %}
+      <div class="kicker">No reviews yet.</div>
+    {% endfor %}
+  </div>
+
+  <h3 style="margin-top:12px;">Add a review</h3>
+  <form method="post">
+    <label for="review">Your review</label>
+    <textarea id="review" name="review" placeholder="Write something..."></textarea><br>
+    <button class="btn" type="submit">Submit review</button>
+  </form>
+</section>
+{% endblock %}
+
+

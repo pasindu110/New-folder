@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="card">
+  <h2>🔐 Admin Authentication</h2>
+  <p class="kicker">Cryptographic Failures Demo — Weak MD5 password hashing</p>
+
+  {% if message %}
+    <div style="background: rgba(16, 185, 129, 0.1); border: 1px solid #10b981; border-radius: 8px; padding: 12px; margin: 12px 0; color: #10b981;">
+      ✅ {{ message }}
+    </div>
+  {% endif %}
+
+  {% if error %}
+    <div style="background: rgba(239, 68, 68, 0.1); border: 1px solid #ef4444; border-radius: 8px; padding: 12px; margin: 12px 0; color: #ef4444;">
+      ❌ {{ error }}
+    </div>
+  {% endif %}
+
+  <form method="POST" style="margin: 16px 0;">
+    <div style="margin-bottom: 12px;">
+      <label style="display: block; margin-bottom: 4px; color: var(--muted);">Username:</label>
+      <input type="text" name="username" placeholder="Enter username" required>
+    </div>
+    <div style="margin-bottom: 16px;">
+      <label style="display: block; margin-bottom: 4px; color: var(--muted);">Password:</label>
+      <input type="password" name="password" placeholder="Enter password" required>
+    </div>
+    <button type="submit" class="btn">🔑 Login</button>
+  </form>
+
+  <div style="margin-top: 20px; padding: 12px; background: rgba(139, 92, 246, 0.1); border-radius: 8px;">
+    <h3 style="margin: 0 0 8px 0; color: var(--accent);">⚠️ Cryptographic Vulnerability</h3>
+    <p style="margin: 0; font-size: 13px; color: var(--muted);">
+      This demo uses weak MD5 hashing for passwords. MD5 is cryptographically broken and easily cracked.
+      Try common passwords like: <code>admin</code>, <code>password123</code>, <code>test</code>, <code>demo</code>
+    </p>
+  </div>
+
+  <h3 style="margin-top: 20px;">👥 User Database (Weak Hashes Exposed)</h3>
+  <table style="width:100%; border-collapse:collapse; margin-top: 8px;">
+    <thead>
+      <tr style="text-align:left;">
+        <th style="padding:8px; border-bottom: 1px solid rgba(255,255,255,0.1);">Username</th>
+        <th style="padding:8px; border-bottom: 1px solid rgba(255,255,255,0.1);">MD5 Hash</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for user in users %}
+        <tr>
+          <td style="padding:8px; border-bottom: 1px solid rgba(255,255,255,0.05);">{{ user['username'] }}</td>
+          <td style="padding:8px; border-bottom: 1px solid rgba(255,255,255,0.05); font-family: monospace; font-size: 12px; color: var(--muted);">{{ user['password_hash'] }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endblock %}
+
+

@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="card">
+  <h2 class="kicker">📚 Featured Collection</h2>
+  <div class="book-grid">
+    {% for b in books %}
+      <article class="book">
+        <div class="cover">
+          {% if b['id'] == 1 %}
+            <img src="{{ url_for('static', filename='images/book1.jpg') }}" alt="{{ b['title'] }} cover">
+          {% elif b['id'] == 2 %}
+           <img src="{{ url_for('static', filename='images/book2.jpg') }}" alt="{{ b['title'] }} cover">
+          {% elif b['id'] == 3 %}
+           <img src="{{ url_for('static', filename='images/book3.jpg') }}" alt="{{ b['title'] }} cover">
+          {% else %}
+            <img src="{{ url_for('static', filename='images/placeholder.svg') }}" alt="No cover available">
+        {% endif %}
+        </div>
+        <div>
+          <h3>{{ b['title'] }}</h3>
+          <p class="author">{{ b['author'] }}</p>
+          <p class="desc">{{ b['description'] }}</p>
+        </div>
+        <div class="center" style="margin-top:10px;">
+          <a class="btn" href="{{ url_for('book', book_id=b['id']) }}">View</a>
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+</section>
+
+<aside class="sidebar card">
+  <div class="search-box">
+    <h3 class="kicker">🔍 Quick Access</h3>
+    <form action="{{ url_for('search') }}" method="get">
+      <input type="search" name="query" placeholder="Search our collection...">
+      <div style="margin-top:12px">
+        <button class="btn">🔎 Explore</button>
+        <a class="btn btn-outline" href="{{ url_for('admin') }}">⚙️ Dashboard</a>
+      </div>
+    </form>
+  </div>
+</aside>
+{% endblock %}
+
+

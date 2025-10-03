@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>CyberBook Hub</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+  <div class="site">
+    <header class="site-header">
+      <div class="brand">
+        <div class="logo">
+<img src="{{ url_for('static', filename='images/logo.png') }}" alt="Book Breach logo" style="width:44px;height:44px;">
+</div>
+
+        <div>
+          <h1>CyberBook Hub</h1>
+          <div class="subtitle">Modern digital library & security lab</div>
+        </div>
+      </div>
+      <nav class="main-nav">
+        <a href="{{ url_for('index') }}">Library</a>
+        <a href="{{ url_for('search') }}">Explore</a>
+        <a href="{{ url_for('admin') }}">Dashboard</a>
+        <a href="{{ url_for('download') }}?file=sample.txt">Resources</a>
+      </nav>
+    </header>
+
+    <main class="content">
+      {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+      <div>⚠ This site is intentionally vulnerable. Use only in an isolated lab.</div>
+    </footer>
+  </div>
+
+  <script src="{{ url_for('static', filename='ui.js') }}"></script>
+</body>
+</html>
+
+
