@@ -19,13 +19,12 @@ COPY . .
 
 # Environment
 ENV PYTHONDONTWRITEBYTECODE=1 \
-    PYTHONUNBUFFERED=1 \
-    PORT=5000
+    PYTHONUNBUFFERED=1
 
-# Expose Flask/Gunicorn port
-EXPOSE 5000
+# Expose the default port many PaaS providers use
+EXPOSE 8080
 
-# Default command: run via Gunicorn
-CMD ["gunicorn", "-w", "2", "-b", "0.0.0.0:5000", "app:app"]
+# Default command: bind to the provided $PORT (fallback 8080)
+CMD ["sh", "-c", "gunicorn -w ${GUNICORN_WORKERS:-2} -b 0.0.0.0:${PORT:-8080} app:app"]
 
 
