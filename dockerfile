@@ -17,6 +17,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the rest of the application
 COPY . .
 
+# Ensure start script is executable
+RUN chmod +x start.sh
+
 # Environment
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1
@@ -24,7 +27,7 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 # Expose the default port many PaaS providers use
 EXPOSE 8080
 
-# Default command: bind to the provided $PORT (fallback 8080)
-CMD ["sh", "-c", "gunicorn -w ${GUNICORN_WORKERS:-2} -b 0.0.0.0:${PORT:-8080} app:app"]
+# Default command: run init-if-needed then start Gunicorn
+CMD ["sh", "-c", "./start.sh"]
 
 
