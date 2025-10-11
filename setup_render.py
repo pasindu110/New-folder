@@ -67,10 +67,11 @@ def init_database():
         
         # Insert flags used by tasks
         flags = [
-            ("sql_flag",    "THM{sql_flag_ABC12}"),
+            ("sql_flag",    "THM{sql_flag_ABC123}"),
             ("xss_flag",    "THM{xss_flag_DEF456}"),
             ("crypto_flag", "THM{crypto_flag_MNO345}"),
-            ("path_flag",   "THM{path_flag_JKL012}")
+            ("path_flag",   "THM{path_flag_JKL012}"),
+            ("idor_flag",   "THM{idor_flag_XYZ789}")
         ]
         c.executemany("INSERT INTO flags (name, value) VALUES (?, ?)", flags)
         

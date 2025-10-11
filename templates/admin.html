@@ -36,6 +36,17 @@
     </p>
   </div>
 
+  <!-- Admin Flag Display -->
+  <div style="margin-top: 20px; padding: 16px; background: rgba(16, 185, 129, 0.1); border: 1px solid #10b981; border-radius: 8px;">
+    <h3 style="margin: 0 0 8px 0; color: #10b981;">🏆 Admin Flag (IDOR Vulnerability)</h3>
+    <p style="margin: 0; font-family: monospace; font-size: 16px; color: #10b981; font-weight: bold;">
+      {{ admin_flag }}
+    </p>
+    <p style="margin: 8px 0 0 0; font-size: 12px; color: var(--muted);">
+      This flag is exposed due to missing authentication (IDOR vulnerability)
+    </p>
+  </div>
+
   <h3 style="margin-top: 20px;">👥 User Database (Weak Hashes Exposed)</h3>
   <table style="width:100%; border-collapse:collapse; margin-top: 8px;">
     <thead>

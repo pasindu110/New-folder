@@ -70,9 +70,11 @@ def admin():
     # retrieve admin flag from flags table
     row = conn.execute("SELECT value FROM flags WHERE name='idor_flag'").fetchone()
     admin_flag = row['value'] if row else "NO_FLAG"
+    # get users for cryptographic failure demo
+    users = conn.execute("SELECT * FROM users").fetchall()
     conn.close()
     # This page intentionally leaks admin secret (IDOR/missing-auth demo)
-    return render_template('admin.html', books=books, admin_flag=admin_flag)
+    return render_template('admin.html', books=books, admin_flag=admin_flag, users=users)
 
 
 # Path traversal vulnerable download endpoint (no sanitization)
