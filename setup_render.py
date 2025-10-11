@@ -67,7 +67,7 @@ def init_database():
         
         # Insert flags used by tasks
         flags = [
-            ("sql_flag",    "THM{sql_flag_ABC123}"),
+            ("sql_flag",    "THM{sql_flag_ABC12}"),
             ("xss_flag",    "THM{xss_flag_DEF456}"),
             ("crypto_flag", "THM{crypto_flag_MNO345}"),
             ("path_flag",   "THM{path_flag_JKL012}")
